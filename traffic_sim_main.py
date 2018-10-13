@@ -30,7 +30,7 @@ class Car: #this class seems kind of awkward i need to learn python better
     @staticmethod
     def generate_random_car(): ##this should be more sophisticated (most people want to go a certain speed )
         temp = Car(name="random_car_" + str(random.randint(1,1000000000)))
-        temp.generate_random_values([1,2],[1,2],[1,2],[1,2],[.05,.1],[1,2])
+        temp.generate_random_values([1,2],[.05,.1],[1,2],[1,2],[.05,.1],[1,2])
         return temp
     def on_update():
         space
@@ -46,19 +46,19 @@ class Car: #this class seems kind of awkward i need to learn python better
 class Lane: 
     cars = [] #in tuples, [boolean,Car] the boolean is whether the car is on the road or not
     length = 100 #in miles
-    addCarCount = 100 #placeholder
+    addCarCount = 70 #placeholder
+    addCarCounter = 0
     def __init__(self,number_of_cars):
         self.addRandomCars(number_of_cars)
-        self.cars[0][0] = True
     def update(self):
-        if(self.addCarCount == 0):
-            self.addCarCount = 100
+        if(self.addCarCounter == 0):
+            self.addCarCounter = self.addCarCount
             for car in self.cars:
                 if(car[0]==False):
                     car[0]=True
                     break
         else :
-            self.addCarCount = self.addCarCount - 1
+            self.addCarCounter = self.addCarCounter - 1
         for x in range(len(self.cars)):
         	car=self.cars[x]
         	if(car[0]):
